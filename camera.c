@@ -3,16 +3,13 @@
 #include <PubSubClient.h>
 #include "esp_camera.h"
 
-// Configurația WiFi
 const char* ssid = "Numele_Retelei";
 const char* password = "Parola_Retelei";
 
-// Configurația MQTT
-const char* mqtt_server = "broker.hivemq.com";  // Schimbă cu adresa brokerului tău
+const char* mqtt_server = "broker.hivemq.com";
 const int mqtt_port = 8883;
 const char* mqtt_topic = "esp32/camera";
 
-// Certificate pentru mTLS
 const char* ca_cert = "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----";
 const char* client_cert = "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----";
 const char* client_key = "-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----";
@@ -73,7 +70,7 @@ void initCamera() {
     
     esp_err_t err = esp_camera_init(&config);
     if (err != ESP_OK) {
-        Serial.printf("Eroare inițializare cameră: 0x%x", err);
+        Serial.printf("Eroare initializare camera: 0x%x", err);
         return;
     }
 }
@@ -98,9 +95,9 @@ void connectToMQTT() {
         if (client.connect("ESP32_Camera")) {
             Serial.println("Conectat!");
         } else {
-            Serial.print("Eșec, rc=");
+            Serial.print("Esec, rc=");
             Serial.print(client.state());
-            Serial.println(" Se reîncearcă în 5 secunde...");
+            Serial.println(" Se reincearca in 5 secunde...");
             delay(5000);
         }
     }
