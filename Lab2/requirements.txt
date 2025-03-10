@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+sqlalchemy
+paho-mqtt
+python-multipart
+opencv-python
+pillow
+python-jose
